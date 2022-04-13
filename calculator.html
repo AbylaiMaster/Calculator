@@ -1,0 +1,125 @@
+<html>
+
+<body>
+<div id='main'>
+	<input id='screen' type='submit' value='0'>
+	<div id='operations'> 
+		<input id='n1' type='submit' value='1' class='numbers'>
+		<input id='n2' type='submit' value='2' class='numbers'>
+		<input id='n3' type='submit' value='3' class='numbers'>
+		<input id='clearDigit' type='submit' value='<-'>
+		<input id='n4' type='submit' value='4' class='numbers'>
+		<input id='n5' type='submit' value='5' class='numbers'>
+		<input id='n6' type='submit' value='6' class='numbers'>
+		<input id='clear' type='submit' value='C'>
+		<input id='n7' type='submit' value='7' class='numbers'>
+		<input id='n8' type='submit' value='8' class='numbers'>
+		<input id='n9' type='submit' value='9' class='numbers'>
+		<input id='additionSymbol' type='submit' value='+'>
+		<input id='n0' type='submit' value='0' class='numbers'>
+		<input id='subtractionSymbol' type='submit' value='-'>
+		<input id='multiplicationSymbol' type='submit' value='*'>
+		<input id='divisionSymbol' type='submit' value='/'>
+		<input id='equal' type='submit' value='='>
+
+	</div>
+</div>
+</body>
+
+<style> 
+#main, #screen, #operations{
+	border: 1px solid black;
+}
+#main{
+	width: 460px;
+}
+#screen{
+	height: 200px;
+	width: 400px;
+	margin: 30px;
+}
+#operations{
+	width: 400px;
+	height: 500px;
+	margin: 30px;
+}
+#operations input{
+	width: 70px;
+	height: 70px;
+	margin: 10px;
+}
+</style>
+
+<script>
+
+let screen = document.querySelector('#screen');
+let numbers = document.querySelectorAll('.numbers');
+let additionSymbol = document.querySelector('#additionSymbol');
+let subtractionSymbol = document.querySelector('#subtractionSymbol');
+let multiplicationSymbol = document.querySelector('#multiplicationSymbol');
+let divisionSymbol = document.querySelector('#divisionSymbol');
+let c = document.querySelector('#clear');
+let cd = document.querySelector('#clearDigit');
+let equal = document.querySelector('#equal');
+let num1 = 0;
+let num2 = 0;
+let operation;
+function addNumber(){
+	screen.value = parseInt(parseInt(screen.value)*10+parseInt(this.value));
+}
+function clear(){
+	screen.value = 0;
+	operation = '';
+}
+function clearDigit(){
+	screen.value = parseInt(screen.value/10);
+}
+function addition(){
+	num1 = screen.value;
+	screen.value = 0;
+	operation = '+';
+}
+function subtraction(){
+	num1 = screen.value;
+	screen.value = 0;
+	operation = '-';
+}
+function multiplication(){
+	num1 = screen.value;
+	screen.value = 0;
+	operation = '*';
+}
+function division(){
+	num1 = screen.value;
+	screen.value = 0;
+	operation = '/';
+}
+function result(){
+	num2 = screen.value;
+	if(operation == '+'){
+		screen.value = parseInt(num1) + parseInt(num2);
+	}
+	else if(operation == '-'){
+		screen.value = parseInt(num1) - parseInt(num2);
+	}
+	else if(operation == '*'){
+		screen.value = parseInt(num1) * parseInt(num2);
+	}
+	else if(operation == '/'){
+		screen.value = parseInt(num1) / parseInt(num2);
+	}
+}
+for(let i = 0; i<numbers.length; i++){
+	numbers[i].addEventListener('click', addNumber);
+}
+c.addEventListener('click', clear);
+cd.addEventListener('click', clearDigit);
+additionSymbol.addEventListener('click', addition);
+subtractionSymbol.addEventListener('click', subtraction);
+multiplicationSymbol.addEventListener('click', multiplication);
+divisionSymbol.addEventListener('click', division);
+equal.addEventListener('click', result);
+
+</script>
+
+</html>
